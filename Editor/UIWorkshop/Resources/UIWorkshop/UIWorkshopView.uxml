@@ -1,0 +1,36 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <engine:Label text="UI Workshop" name="title" style="font-size: 42px; -unity-font-style: bold; -unity-text-align: upper-center; margin-bottom: 4px;" />
+    <engine:VisualElement name="settings-container" style="flex-grow: 1; border-left-color: rgb(88, 88, 88); border-right-color: rgb(88, 88, 88); border-top-color: rgb(88, 88, 88); border-bottom-color: rgb(88, 88, 88); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; margin-top: 8px; margin-right: 8px; margin-bottom: 8px; margin-left: 8px; padding-top: 10px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px;">
+        <engine:Label text=" Settings " name="neutral-mode-label" style="top: -10px; position: absolute; background-color: rgb(56, 56, 56); color: rgb(88, 88, 88); -unity-font-style: bold; left: 12px; font-size: 14px;" />
+        <editor:ObjectField label="Studio Scene" name="studio-scene-field" enabled="false" />
+        <engine:EnumField label="Platform" value="PC" type="UICoreSystem.UIPlatform, Assembly-CSharp" name="uiplatform-enum" />
+        <engine:VisualElement style="flex-grow: 0; border-bottom-width: 1px; border-bottom-color: rgb(48, 48, 48); border-left-color: rgb(48, 48, 48); border-right-color: rgb(48, 48, 48); border-top-color: rgb(48, 48, 48); padding-bottom: 4px; padding-top: 4px; padding-right: 4px; padding-left: 4px; border-top-width: 1px; border-right-width: 1px; border-left-width: 1px; background-color: rgb(88, 88, 88); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; margin-bottom: 8px; margin-top: 8px;">
+            <DatastoresDX.Editor.DataReferenceDrawer name="current-view-drawer" style="margin-bottom: 2px;" />
+            <engine:VisualElement name="view-preview-area" style="flex-grow: 1; align-items: center; overflow: hidden;">
+                <engine:VisualElement name="view-preview-render-spot" style="flex-grow: 1; background-color: rgba(255, 255, 255, 0); width: 192px; height: 108px; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px; overflow: hidden; align-items: center; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-left-color: rgb(42, 42, 42); border-right-color: rgb(42, 42, 42); border-top-color: rgb(42, 42, 42); border-bottom-color: rgb(42, 42, 42);">
+                    <engine:VisualElement name="view-preview-render" style="flex-grow: 1; position: absolute; top: -460%; left: auto; bottom: auto; right: auto; scale: 0.1 0.1; width: 1920px; height: 1080px;" />
+                </engine:VisualElement>
+            </engine:VisualElement>
+            <engine:VisualElement style="flex-grow: 1; flex-direction: row; margin-top: 4px;">
+                <engine:Label text="ViewModel" name="viewmodel-type-label" style="-unity-text-align: middle-left;" />
+                <engine:Label text="Mock" style="-unity-text-align: middle-left;" />
+                <engine:DropdownField name="mock-viewmodel-dropdown" style="flex-grow: 1;" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:Button text="Open UI Builder" name="uibuilder-button" />
+        <engine:Button text="Open UIToolkit Debugger" name="debugger-button" />
+    </engine:VisualElement>
+    <engine:VisualElement name="edit-mode-container" style="flex-grow: 1; margin-left: 8px; margin-top: 8px; margin-right: 8px; margin-bottom: 8px; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; border-left-color: rgb(88, 88, 88); border-right-color: rgb(88, 88, 88); border-top-color: rgb(88, 88, 88); border-bottom-color: rgb(88, 88, 88); padding-top: 10px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px;">
+        <engine:Label text=" Edit Mode " name="edit-mode-label" style="top: -10px; position: absolute; background-color: rgb(56, 56, 56); color: rgb(88, 88, 88); -unity-font-style: bold; left: 12px; font-size: 14px;" />
+        <engine:Button text="Play" name="play-button" style="height: 48px; font-size: 25px; -unity-font-style: bold;" />
+    </engine:VisualElement>
+    <engine:VisualElement name="play-mode-container" style="flex-grow: 1; border-left-color: rgb(88, 88, 88); border-right-color: rgb(88, 88, 88); border-top-color: rgb(88, 88, 88); border-bottom-color: rgb(88, 88, 88); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; margin-top: 8px; margin-right: 8px; margin-bottom: 8px; margin-left: 8px; padding-top: 10px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px;">
+        <engine:Label text=" Play Mode " name="play-mode-label" style="top: -10px; position: absolute; background-color: rgb(56, 56, 56); color: rgb(88, 88, 88); -unity-font-style: bold; left: 12px; font-size: 14px;" />
+        <engine:Button text="Stop" name="stop-button" style="height: 48px; font-size: 25px; -unity-font-style: bold;" />
+        <engine:VisualElement style="flex-grow: 0; flex-direction: row; overflow: hidden;">
+            <engine:Button text="Reload" name="reload-button" style="width: 50%;" />
+            <engine:Button text="Reload View Only" name="reload-view-only-button" style="flex-grow: 1;" />
+        </engine:VisualElement>
+        <engine:VisualElement name="viewmodels-container" style="flex-grow: 1; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px;" />
+    </engine:VisualElement>
+</engine:UXML>

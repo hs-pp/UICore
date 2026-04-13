@@ -1,0 +1,8 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <engine:VisualElement style="flex-grow: 1;">
+        <engine:TreeView name="types-list-treeview" auto-expand="true" show-alternating-row-backgrounds="ContentOnly" />
+    </engine:VisualElement>
+    <engine:VisualElement style="flex-grow: 0; flex-shrink: 0; flex-direction: row-reverse;">
+        <engine:Button text="Clear" name="clear-button" style="height: 23px; margin-bottom: 4px; margin-top: 4px;" />
+    </engine:VisualElement>
+</engine:UXML>
