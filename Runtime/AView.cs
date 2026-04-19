@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using MyMVVM;
-using RemedySystem;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace UICoreSystem
@@ -103,19 +103,19 @@ namespace UICoreSystem
             {
                 UnsetViewModel();
             }
-
+            
             if (viewModel != null)
             {
                 m_viewModel = viewModel as T;
                 if (m_viewModel == null)
                 {
-                    Remedy.LogError(RemedyTypes.UICore, $"{GetType().Name} ViewModel type mismatch! Was expecting {typeof(T)} but got {viewModel.GetType().Name}!");
+                    Debug.LogError($"{GetType().Name} ViewModel type mismatch! Was expecting {typeof(T)} but got {viewModel.GetType().Name}!");
                     return;
                 }
             }
             else
             {
-                Remedy.LogError(RemedyTypes.UICore, $"Trying to set ViewModel for {GetType().Name} but it's null!");
+                Debug.LogError($"Trying to set ViewModel for {GetType().Name} but it's null!");
             }
             
             OnSetViewModel(m_viewModel);

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using RemedySystem;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace UICoreSystem
@@ -18,7 +18,6 @@ namespace UICoreSystem
     }
 
     [UxmlElement]
-    [RemedyType("PrimaryLayout")]
     public partial class PrimaryLayout : VisualElement
     {
         private Dictionary<ScreenType, VisualElement> m_screenContainers = new();
@@ -47,7 +46,7 @@ namespace UICoreSystem
         {
             if (screen == null)
             {
-                Remedy.LogError(RemedyTypes.PrimaryLayout, "Screen being added is null!");
+                Debug.LogError("Screen being added is null!");
                 return;
             }
 
@@ -55,7 +54,7 @@ namespace UICoreSystem
             VisualElement screenContainer = m_screenContainers[screen.ScreenType];
             if (screenContainer.Contains(screenElement))
             {
-                Remedy.LogWarning(RemedyTypes.PrimaryLayout, LogVerbosity.Normal, $"Screen {screen.GetType().Name} already added to PrimaryLayout!");
+                Debug.LogWarning($"Screen {screen.GetType().Name} already added to PrimaryLayout!");
                 return;
             }
 
@@ -82,8 +81,7 @@ namespace UICoreSystem
             VisualElement screenContainer = m_screenContainers[screen.ScreenType];
             if (!screenContainer.Contains(screenElement))
             {
-                Remedy.LogWarning(RemedyTypes.PrimaryLayout, LogVerbosity.Normal,
-                    $"Screen {screen.GetType().Name} was never added to PrimaryLayout but is trying to be removed!");
+                Debug.LogWarning($"Screen {screen.GetType().Name} was never added to PrimaryLayout but is trying to be removed!");
                 return;
             }
 

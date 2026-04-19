@@ -1,0 +1,21 @@
+{
+    "name": "UICoreEditor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:343deaaf83e0cee4ca978e7df0b80d21",
+        "GUID:165140f40706bbb40a64c1e61820d1f4",
+        "GUID:28a889b274479194c9ad65fbe526581e",
+        "GUID:ecb53dc9ae2cd4a89a9ae0aaa7acad04",
+        "GUID:6d7f3233721f043e28da100638d67209",
+        "GUID:6cd805283c9114b9984c935052c3f31c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

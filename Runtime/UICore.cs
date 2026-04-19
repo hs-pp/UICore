@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DatastoresDX.Runtime;
 using MyMVVM;
-using RemedySystem;
 using SystemCoreSystem;
 using UICoreSystem;
 using UnityEngine;
@@ -14,7 +13,6 @@ using DatastoresDX.Editor;
 using DatastoresDX.Editor.DataCollections;
 #endif
 
-[RemedyType("UICore")]
 public class UICore : AKeySystem
 {
     private const string PRIMARYLAYOUTSPAWNER_PREFAB_PATH = "UICore/PrimaryLayoutSpawner";
@@ -51,7 +49,7 @@ public class UICore : AKeySystem
         PrimaryLayoutSpawner spawnerPrefab = Resources.Load<PrimaryLayoutSpawner>(PRIMARYLAYOUTSPAWNER_PREFAB_PATH);
         if (spawnerPrefab == null)
         {
-            Remedy.LogError(RemedyTypes.UICore, "PrimaryLayout Spawner prefab is null! Could not instantiate!");
+            Debug.LogError("PrimaryLayout Spawner prefab is null! Could not instantiate!");
             return;
         }
 
@@ -213,7 +211,7 @@ public class UICore : AKeySystem
 
         if (toReturn == null)
         {
-            Remedy.LogError(RemedyTypes.UICore, $"Could not get a ViewData for {viewType}!");
+            Debug.LogError($"Could not get a ViewData for {viewType}!");
         }
         return toReturn;
     }
