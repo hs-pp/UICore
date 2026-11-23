@@ -80,10 +80,7 @@ namespace UICoreSystem.Utility.Editor
             m_idCounter = 0;
 
             // Get all loaded types that are subclass of baseType (or implement the interface)
-            var allDerivedTypes = AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(a => a.GetTypes())
-                .Where(t => t != null && baseType.IsAssignableFrom(t) && t != baseType)
-                .ToList();
+            var allDerivedTypes = TypeCache.GetTypesDerivedFrom(baseType).ToList();
 
             // Group by their direct base type
             var typeMap = new Dictionary<Type, List<Type>>();
