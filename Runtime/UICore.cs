@@ -5,6 +5,7 @@ using DatastoresDX.Runtime;
 using MyMVVM;
 using SystemCoreSystem;
 using UICoreSystem;
+using Unity.Scripting.LifecycleManagement;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,10 +14,12 @@ using DatastoresDX.Editor;
 using DatastoresDX.Editor.DataCollections;
 #endif
 
-public class UICore : AKeySystem
+public partial class UICore : AKeySystem
 {
     private const string PRIMARYLAYOUTSPAWNER_PREFAB_PATH = "UICore/PrimaryLayoutSpawner";
     private PrimaryLayout m_primaryLayout;
+    
+    [AutoStaticsCleanup]
     public static UIPlatform CurrentPlatform { get; private set; } = UIPlatform.PC;
     
     public override Task OnInitialize()

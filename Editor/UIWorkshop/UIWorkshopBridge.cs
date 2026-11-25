@@ -3,6 +3,7 @@ using DatastoresDX.Runtime;
 using MyMVVM;
 using SystemCoreSystem;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
@@ -37,6 +38,11 @@ namespace UICoreSystem.UIWorkshop
             {
                 OnExitPlayMode();
             }
+
+            if (state == PlayModeStateChange.ExitingPlayMode)
+            {
+                EditorSceneManager.playModeStartScene = null;
+            }
             UIWorkshopModel.IsPlayMode_Set(state == PlayModeStateChange.EnteredPlayMode);
         }
         
@@ -67,6 +73,7 @@ namespace UICoreSystem.UIWorkshop
         private static void OnExitPlayMode()
         {
             RuntimeController = null;
+            UIWorkshopModel.ViewInstance_Set(null);
         }
         
         private static void LoadModel()

@@ -63,10 +63,35 @@ namespace UICoreSystem.UIWorkshop
         public UIWorkshopView(UIWorkshopViewModel uiWorkshopViewModel)
         {
             m_uiWorkshopViewModel = uiWorkshopViewModel;
-            
+
             CreateLayout();
             CreateBindings();
+
+            // The model behind the view model is static and outlives this view, so only listen to it while attached.
+            RegisterCallback<AttachToPanelEvent>(OnAttachToPanel);
+            RegisterCallback<DetachFromPanelEvent>(OnDetachFromPanel);
+        }
+
+        private void OnAttachToPanel(AttachToPanelEvent evt)
+        {
+            m_uiWorkshopViewModel.UiPlatform_OnChanged += OnUIPlatformChanged;
+            m_uiWorkshopViewModel.ShowPlayModeContainer_OnChanged += OnShowPlayModeContainerChanged;
+            m_uiWorkshopViewModel.ViewToShow_OnChanged += OnCurrentUIWorkshopViewChanged;
+            m_uiWorkshopViewModel.ViewModelType_OnChanged += OnViewModelTypeChanged;
+            m_uiWorkshopViewModel.MockMethods_OnChanged += OnMockMethodsChanged;
+            m_uiWorkshopViewModel.ViewInstance_OnChanged += OnViewInstanceChanged;
+
             LoadSettings();
+        }
+
+        private void OnDetachFromPanel(DetachFromPanelEvent evt)
+        {
+            m_uiWorkshopViewModel.UiPlatform_OnChanged -= OnUIPlatformChanged;
+            m_uiWorkshopViewModel.ShowPlayModeContainer_OnChanged -= OnShowPlayModeContainerChanged;
+            m_uiWorkshopViewModel.ViewToShow_OnChanged -= OnCurrentUIWorkshopViewChanged;
+            m_uiWorkshopViewModel.ViewModelType_OnChanged -= OnViewModelTypeChanged;
+            m_uiWorkshopViewModel.MockMethods_OnChanged -= OnMockMethodsChanged;
+            m_uiWorkshopViewModel.ViewInstance_OnChanged -= OnViewInstanceChanged;
         }
 
         private void CreateLayout()
@@ -98,14 +123,7 @@ namespace UICoreSystem.UIWorkshop
         private void CreateBindings()
         {
             m_uiPlatformsEnum.RegisterValueChangedCallback(OnUILayoutModeEnumDropdownChanged);
-            m_uiWorkshopViewModel.UiPlatform_OnChanged += OnUIPlatformChanged;
-            
-            m_uiWorkshopViewModel.ShowPlayModeContainer_OnChanged += OnShowPlayModeContainerChanged;
-            m_uiWorkshopViewModel.ViewToShow_OnChanged += OnCurrentUIWorkshopViewChanged;
-            m_uiWorkshopViewModel.ViewModelType_OnChanged += OnViewModelTypeChanged;
-            m_uiWorkshopViewModel.MockMethods_OnChanged += OnMockMethodsChanged;
-            m_uiWorkshopViewModel.ViewInstance_OnChanged += OnViewInstanceChanged;
-            
+
             m_studioSceneField.value = m_uiWorkshopViewModel.ViewStudioScene;
             m_currentViewDrawer.SetElementType(typeof(BaseViewData));
             m_currentViewDrawer.OnValueChanged += OnCurrentViewChanged;
@@ -119,9 +137,6 @@ namespace UICoreSystem.UIWorkshop
             m_reloadViewOnlyButton.clicked += OnReloadViewOnlyButtonPressed;
             m_uiBuilderButton.clicked += OnUIBuilderButtonPressed;
             m_debuggerButton.clicked += OnDebuggerButtonPressed;
-            
-            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
-            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
         }
 
         private void LoadSettings()
@@ -296,14 +311,6 @@ namespace UICoreSystem.UIWorkshop
             Assembly ass = Assembly.Load("UnityEditor.UIElementsModule");
             Type debuggerWindowType = ass.GetType("UnityEditor.UIElements.Debugger.UIElementsDebugger");
             EditorWindow.GetWindow(debuggerWindowType);
-        }
-        
-        private void OnPlayModeStateChanged(PlayModeStateChange state)
-        {
-            if (state == PlayModeStateChange.ExitingPlayMode)
-            {
-                EditorSceneManager.playModeStartScene = null;
-            }
         }
     }
 }
