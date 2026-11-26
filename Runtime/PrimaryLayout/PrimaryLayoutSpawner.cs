@@ -22,12 +22,16 @@ namespace UICoreSystem
         /// Technically this should only take one frame to wait for PanelSettings GO to be created. But we'll loop and keep
         /// checking just to be safe.
         /// </summary>
-        private async Task FocusPrimaryLayout() // TODO: Convert this to coroutine to avoid leaks!
+        private async Task FocusPrimaryLayout()
         {
             PanelEventHandler panelEventHandler = null;
             while (panelEventHandler == null)
             {
                 await Task.Delay(20);
+                if (this == null)
+                {
+                    return;
+                }
                 panelEventHandler = FindAnyObjectByType<PanelEventHandler>();
             }
 
