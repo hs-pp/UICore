@@ -37,7 +37,7 @@ namespace UICoreSystem.UIWorkshop
 
         public UIWorkshopModel()
         {
-            m_ViewToShow_OnChanged += OnViewToShowChanged;
+            ViewToShow_OnChanged += OnViewToShowChanged;
         }
 
         private void OnViewToShowChanged(DataReference<BaseViewData> obj)

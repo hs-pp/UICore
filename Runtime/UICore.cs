@@ -202,7 +202,15 @@ public partial class UICore : AKeySystem
             List<WorkflowElementKey> elementKeys = DatastoresEditorCore.GetAllDataElementsOfType(typeof(BaseViewData));
             foreach (WorkflowElementKey elementKey in elementKeys)
             {
-                toReturn = (elementKey.GetElement() as DataCollectionElementWrapper).RuntimeElement as BaseViewData;
+                BaseViewData viewData = (elementKey.GetElement() as DataCollectionElementWrapper)?.RuntimeElement as BaseViewData;
+                // Same matching as CacheViewDatas
+                if (viewData != null && (viewData.ViewType == viewType
+                    || viewData.PCConsoleViewType.Get() == viewType
+                    || viewData.MobileViewType.Get() == viewType))
+                {
+                    toReturn = viewData;
+                    break;
+                }
             }
         }
 #endif
