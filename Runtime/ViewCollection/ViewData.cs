@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace UICoreSystem
 {
+    [Serializable]
     [DataElement(typeof(ViewCollection), "ViewData")]
     public class ViewData : AViewData<IView>
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace UICoreSystem
 {
+    [Serializable]
     [DataElement(typeof(ViewCollection), "ScreenData")]
     public class ScreenData : AViewData<IScreen>
     {
