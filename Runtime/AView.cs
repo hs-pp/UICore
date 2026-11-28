@@ -77,10 +77,27 @@ namespace UICoreSystem
         
         public void Cleanup()
         {
+            CleanupChildViews(this);
             OnCleanup();
             UnsetViewModel();
         }
-        
+
+        // Stops at each child view, whose own Cleanup handles everything below it
+        private static void CleanupChildViews(VisualElement element)
+        {
+            foreach (VisualElement child in element.Children().ToList())
+            {
+                if (child is IView view)
+                {
+                    view.Cleanup();
+                }
+                else
+                {
+                    CleanupChildViews(child);
+                }
+            }
+        }
+
         protected abstract void OnCreateLayout();
         public abstract void SetViewModel(ViewModel viewModel);
         public abstract void UnsetViewModel();
