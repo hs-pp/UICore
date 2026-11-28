@@ -8,16 +8,31 @@ namespace UICoreSystem
     public class PrimaryLayoutSpawner : MonoBehaviour
     {
         [SerializeField]
-        private UIDocument m_document;
-        private PrimaryLayout m_primaryLayout;
-        public PrimaryLayout PrimaryLayout => m_primaryLayout;
+        private PanelRenderer m_panelRenderer;
+        private TaskCompletionSource<PrimaryLayout> m_primaryLayoutReady = new();
+        public Task<PrimaryLayout> PrimaryLayoutReady => m_primaryLayoutReady.Task;
 
         public void Awake()
         {
-            m_primaryLayout = m_document.rootVisualElement.Q<PrimaryLayout>();
             _ = FocusPrimaryLayout();
         }
-        
+
+        private void OnEnable()
+        {
+            m_panelRenderer.RegisterUIReloadCallback(OnUIReload);
+        }
+
+        private void OnDisable()
+        {
+            m_panelRenderer.UnregisterUIReloadCallback(OnUIReload);
+        }
+
+        // Also runs on re-enable and live reload. Only the first call matters.
+        private void OnUIReload(PanelRenderer panelRenderer, VisualElement root, int version)
+        {
+            m_primaryLayoutReady.TrySetResult(root.Q<PrimaryLayout>());
+        }
+
         /// <summary>
         /// Technically this should only take one frame to wait for PanelSettings GO to be created. But we'll loop and keep
         /// checking just to be safe.

@@ -22,12 +22,10 @@ public partial class UICore : AKeySystem
     [AutoStaticsCleanup]
     public static UIPlatform CurrentPlatform { get; private set; } = UIPlatform.PC;
     
-    public override Task OnInitialize()
+    public override async Task OnInitialize()
     {
         CacheViewDatas();
-        SpawnPrimaryLayout();
-        
-        return Task.CompletedTask;
+        await SpawnPrimaryLayout();
     }
 
     public override Task OnDeinitialize()
@@ -47,7 +45,7 @@ public partial class UICore : AKeySystem
     }
   
 #region PrimaryLayout
-    private void SpawnPrimaryLayout()
+    private async Task SpawnPrimaryLayout()
     {
         PrimaryLayoutSpawner spawnerPrefab = Resources.Load<PrimaryLayoutSpawner>(PRIMARYLAYOUTSPAWNER_PREFAB_PATH);
         if (spawnerPrefab == null)
@@ -57,7 +55,7 @@ public partial class UICore : AKeySystem
         }
 
         PrimaryLayoutSpawner primaryLayoutSpawner = Instantiate(spawnerPrefab, transform);
-        m_primaryLayout = primaryLayoutSpawner.PrimaryLayout;
+        m_primaryLayout = await primaryLayoutSpawner.PrimaryLayoutReady;
     }
     
     public static T CreateScreen<T>(ViewModel viewModel) where T : IScreen
