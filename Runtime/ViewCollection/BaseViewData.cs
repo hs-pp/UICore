@@ -16,6 +16,7 @@ namespace UICoreSystem
         Mobile = 1 << 2,
     }
     
+    [Serializable]
     public abstract class BaseViewData : DataCollectionElement
     {
         // PC/Console
@@ -137,5 +138,6 @@ namespace UICoreSystem
 #endif
     }
     
+    [Serializable]
     public abstract class AViewData<T> : BaseViewData where T : IView { }
 }

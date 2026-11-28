@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 
 namespace UICoreSystem.UIWorkshop
 {
+    [System.Serializable]
     [OverviewPanel(typeof(ViewCollection))]
     public class UIWorkshopOverviewPanel : AOverviewPanel
     {
